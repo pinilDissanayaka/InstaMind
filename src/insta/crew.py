@@ -1,5 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from tools import SearchTools
 
 # Uncomment the following line to use an example of a custom tool
 # from insta.tools.custom_tool import MyCustomTool

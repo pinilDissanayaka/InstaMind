@@ -1,6 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from tools import SearchTools
+from insta.tools.search import SearchTools
 
 # Uncomment the following line to use an example of a custom tool
 # from insta.tools.custom_tool import MyCustomTool
@@ -9,7 +9,7 @@ from tools import SearchTools
 # from crewai_tools import SerperDevTool
 
 @CrewBase
-class InstagramCrew:
+class Insta:
     """Instagram crew"""
 
     agents_config = "config/agents.yaml"

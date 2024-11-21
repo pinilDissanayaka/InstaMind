@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import sys
 import warnings
-
 from insta.crew import Insta
+import datetime
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -12,13 +12,20 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # interpolate any tasks and agents information
 
 def run():
-    """
-    Run the crew.
-    """
-    inputs = {
-        'topic': 'AI LLMs'
-    }
-    Insta().crew().kickoff(inputs=inputs)
+    try:
+        """
+        Run the crew.
+        """
+        inputs = {
+            'current_date': datetime.datetime.now().strftime("%Y-%m-%d"),
+            'instagram_description': input('Enter the page description here: '),
+            'topic_of_the_week': input('Enter the topic of the week here: '),
+        }
+        
+        Insta().crew().kickoff(inputs=inputs)
+        
+    except Exception as e:
+        raise Exception(f"An error occurred while running the crew: {e}")
 
 
 def train():
@@ -56,3 +63,4 @@ def test():
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
+

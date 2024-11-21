@@ -1,0 +1,20 @@
+[project]
+name = "insta"
+version = "0.1.0"
+description = "Insta using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.80.0,<1.0.0"
+]
+
+[project.scripts]
+insta = "insta.main:run"
+run_crew = "insta.main:run"
+train = "insta.main:train"
+replay = "insta.main:replay"
+test = "insta.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -21,7 +21,7 @@ class SearchTools(object):
         """Use this tools to search Instagram.
         This tool return top 5 results from Instagram pages."""
         
-        return SearchTools.search(f"site.instagram.com{query}")
+        return SearchTools.search(f"site:instagram.com{query}")
     
     
     @tool("open_page")
@@ -30,8 +30,13 @@ class SearchTools(object):
         This tool return the page content.
         """
         
-        return WebBaseLoader(url).lazy_load()
+        documents=WebBaseLoader(url).load()
+        filtered_documents=[]
+        for document in documents:
+            if document.metadata["source"] == url:
+                filtered_documents.append(document.page_content)
         
+        return "\n".join(filtered_documents)        
         
         
     def search(query:str, limit=5):
@@ -54,8 +59,3 @@ class SearchTools(object):
             string.append(f"{result['title']}\n{result['snippet']}\n{result['link']}\n\n")
 
         return f"Search results for '{query}':\n\n" + "\n".join(string)
-    
-    
-if __name__ == "__main__":
-    print(SearchTools.search_instagram("How to make a cake?"))
-    print(SearchTools.search_internet("How to make a cake?"))
